@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>&#128176; Expense Tracker</h1>
+        <p>Keep track of your income and expenses</p>
+    </header>
+
+    <div class="container">
+
+        <!-- summary -->
+        <div class="summary">
+            <div class="card income-card">
+                <p>Total Income</p>
+                <h2 id="totalIncome">₹0</h2>
+            </div>
+            <div class="card expense-card">
+                <p>Total Expense</p>
+                <h2 id="totalExpense">₹0</h2>
+            </div>
+            <div class="card balance-card" id="balanceCard">
+                <p>Balance</p>
+                <h2 id="balance">₹0</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- add transaction -->
+            <div class="box">
+                <h3>Add Transaction</h3>
+
+                <label>Type</label>
+                <select id="type" onchange="loadCategories()">
+                    <option value="expense">Expense</option>
+                    <option value="income">Income</option>
+                </select>
+
+                <label>Description</label>
+                <input type="text" id="desc" maxlength="40" placeholder="eg. Lunch at canteen">
+
+                <label>Amount (₹)</label>
+                <input type="number" id="amount" min="0" placeholder="eg. 120">
+
+                <label>Category</label>
+                <select id="category"></select>
+
+                <label>Date</label>
+                <input type="date" id="date">
+
+                <button class="add-btn" onclick="addTransaction()">Add Transaction</button>
+                <p id="msg"></p>
+            </div>
+
+            <!-- category wise -->
+            <div class="box">
+                <h3>Expenses by Category</h3>
+                <div id="categoryList"></div>
+            </div>
+        </div>
+
+        <!-- history -->
+        <div class="box">
+            <div class="history-top">
+                <h3>Transaction History</h3>
+                <div class="filters">
+                    <select id="filterType" onchange="showTransactions()">
+                        <option value="all">All Types</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                    <select id="filterCategory" onchange="showTransactions()"></select>
+                </div>
+            </div>
+
+            <div class="table-box">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="list"></tbody>
+                </table>
+            </div>
+            <p id="emptyMsg" class="empty"></p>
+
+            <button class="clear-btn" onclick="clearAll()">Clear All</button>
+        </div>
+
+    </div>
+
+    <footer>Made by Piyush Kumar</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
